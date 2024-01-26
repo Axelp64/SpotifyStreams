@@ -30,35 +30,39 @@ ui <- dashboardPage(skin = "black",
                                ,),
                         column(3, align = "center")
                       ),
-                       box(
-                         title = "Chat with ChatGPT",
-                         solidHeader = FALSE, 
-                         width = 6,
-                         column(3, align = "center"),
-                         column(6, align = "center",
+                      box(
+                        title = "Chat with ChatGPT",
+                        solidHeader = FALSE, 
+                        width = 6,
+                        column(3, align = "center"),
+                        column(6, align = "center",
                                br(),
-                                br(),
+                               br(),
                                br()),
                         column(3, align = "center")
                       ),
-                      
-                       box(
-                         title = "Stats",
-                         solidHeader = FALSE,
-                         width = 6,
-                         br(),
-                         fluidRow(
-                           column(6, valueBoxOutput("numStreams", width=12))
-                           
-                           
-                         ))
+                      column(6,
+                             box(
+                               title = "Stats",
+                               solidHeader = FALSE,
+                               width = 12,
+                               br(),
+                               fluidRow(
+                                 column(6, valueBoxOutput("numStreams", width=12)),
+                                 column(6, valueBoxOutput("numTracks", width=12))
+                               ),
+                               fluidRow(
+                                 column(6, valueBoxOutput("numArtists", width=12)),
+                                 column(6, valueBoxOutput("numGenre", width=12))
+                               )),
+                             box(title = "Popularity per gender", width = 6,
+                                 plotlyOutput("genrePopularityPlot"))
+                             
+                      ),
+                      column(6,
+                             DTOutput("datatable_track")
+                      )
                     )
 )
-##   br(), 
-##      box(title = "Track & playlist presence", 
-##          ...,
-##        )
 
-##        )
-## )
 
